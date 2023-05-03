@@ -90,8 +90,7 @@ function userCreate() {
 function showUserEditBox(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `
-        http: //localhost:3000/Restaurant/${id}`);
+    xhttp.open("GET", `http://localhost:3000/Restaurant/${id}`);
     xhttp.send();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -112,11 +111,6 @@ function showUserEditBox(id) {
                     objects["ContactNo"] + '">' +
                     '<input id="EMailId" class="swal2-input" placeholder="EMailId" value="' +
                     objects["EMailId"] + '">',
-                showDenyButton: true,
-
-                confirmButtonText: 'Save',
-                denyButtonText: `Don't save`,
-
                 preConfirm: () => {
                     userEdit(id);
                 },
@@ -144,7 +138,7 @@ function userEdit(id) {
                 ContactNo: ContactNo,
                 Address: Address,
                 EMailId: EMailId,
-
+                Image: "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
             })
 
         );
@@ -157,6 +151,7 @@ function userEdit(id) {
         };
     }
 }
+
 
 function userDelete(id) {
     console.log(id);
