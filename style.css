@@ -1,0 +1,18 @@
+.bg-mynav {
+    background-color: #2c3e50;
+}
+
+body {
+    font-size: 1.25rem;
+    background-color: #f6f8fa;
+    background-image: url("./rustic-wooden-planks-with-blackboard-background_53876-103852.avif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: rgb(255, 255, 255);
+}
+
+td,
+th {
+    line-height: 3rem;
+    color: rgb(255, 255, 255);
+}

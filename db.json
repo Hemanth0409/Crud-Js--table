@@ -1,0 +1,48 @@
+{
+    "Restaurant": [{
+            "RestaurantName": "Hifi",
+            "RestaurantType": "Non Veg",
+            "ContactNo": "98765654321",
+            "Address": "coimbatore",
+            "EMailId": "Hifi@gmail.com",
+            "avatar": "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
+            "id": 1
+        },
+        {
+            "RestaurantName": "KFC",
+            "RestaurantType": "Non Veg",
+            "ContactNo": "9876543220",
+            "Address": "Coimbatore",
+            "EMailId": "KFC@gmail.com",
+            "avatar": "http://vignette1.wikia.nocookie.net/ridiculoushist/images/b/b8/KFC_logo.png",
+            "id": 2
+        },
+        {
+            "RestaurantName": "BurgerKing",
+            "RestaurantType": "Non-Veg",
+            "Address": "Coimbatore",
+            "ContactNo": "9876543120",
+            "EMailId": "Burgerking@gmail.com",
+            "avatar": "https://upload.wikimedia.org/wikipedia/commons/8/85/Burger_King_logo_%281999%29.svg",
+            "id": 3
+        },
+        {
+            "RestaurantName": "PizzaHut",
+            "RestaurantType": "Non-Veg",
+            "Address": "Coimbatore",
+            "ContactNo": "9876512120",
+            "EMailId": "Pizzahut@gmail.com",
+            "avatar": "http://image.shutterstock.com/z/stock-vector-food-restaurant-logo-icon-264413183.jpg",
+            "id": 4
+        },
+        {
+            "RestaurantName": "Shivaji ",
+            "RestaurantType": "Non-Veg",
+            "ContactNo": "9876543123",
+            "Address": "Coimbatore",
+            "EMailId": "Shivaji@gamil.com",
+            "avatar": "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
+            "id": 5
+        }
+    ]
+}
