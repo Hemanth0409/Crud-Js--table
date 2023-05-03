@@ -18,8 +18,8 @@ function loadTable() {
                 trHTML += "<td>" + object["EMailId"] + "</td>";
                 trHTML +=
                     '<td><img width="50px" src="' +
-                    object["avatar"] +
-                    '" class="avatar"></td>';
+                    object["Image"] +
+                    '" class="Image"></td>';
                 trHTML +=
                     '<td><button type="button" class="btn btn-secondary ms-2" onclick="showUserEditBox(' +
                     object["id"] +
@@ -69,7 +69,7 @@ function userCreate() {
                 Address: Address,
                 ContactNo: ContactNo,
                 EMailId: EMailId,
-                avatar: "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
+                Image: "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
             })
         );
         xhttp.onreadystatechange = function() {
@@ -106,6 +106,11 @@ function showUserEditBox(id) {
                     objects["ContactNo"] + '">' +
                     '<input id="EMailId" class="swal2-input" placeholder="EMailId" value="' +
                     objects["EMailId"] + '">',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+                denyButtonText: `Don't save`,
+
                 preConfirm: () => {
                     userEdit(id);
                 },
@@ -133,7 +138,7 @@ function userEdit(id) {
                 ContactNo: ContactNo,
                 Address: Address,
                 EMailId: EMailId,
-                avatar: "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
+
             })
 
         );
@@ -156,10 +161,13 @@ function userDelete(id) {
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         type: 'warning',
+        showCloseButton: true,
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        focusConfirm: false,
+        confirmButtonText: '<i class="fa fa-thumbs-up"></i> Delete!',
+        confirmButtonAriaLabel: 'Thumbs up, Delete!',
+        cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
+        cancelButtonAriaLabel: 'Thumbs down'
     }).then((result) => {
         if (result.value) {
             xhttp.send(
