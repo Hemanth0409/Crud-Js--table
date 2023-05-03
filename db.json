@@ -2,7 +2,7 @@
     "Restaurant": [{
             "RestaurantName": "Hifi",
             "RestaurantType": "Non Veg",
-            "ContactNo": "98765654321",
+            "ContactNo": "9876565432",
             "Address": "coimbatore",
             "EMailId": "Hifi@gmail.com",
             "avatar": "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",

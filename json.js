@@ -21,13 +21,13 @@ function loadTable() {
                     object["avatar"] +
                     '" class="avatar"></td>';
                 trHTML +=
-                    '<td><button type="button" class="btn btn-outline-secondary ms-2" onclick="showUserEditBox(' +
+                    '<td><button type="button" class="btn btn-secondary ms-2" onclick="showUserEditBox(' +
                     object["id"] +
-                    ')">Edit</button>';
+                    ')"><i class="fa-sharp fa-solid fa-user-pen"></i></button>';
                 trHTML +=
-                    '<button type="button" class="btn btn-outline-danger ms-2" onclick="userDelete(' +
+                    '<button type="button" class="btn  btn-danger ms-2" onclick="userDelete(' +
                     object["id"] +
-                    ')">Del</button></td>';
+                    ')"><i class="fa-sharp fa-solid fa-trash"></i></button></td>';
                 trHTML += "</tr>";
             }
             document.getElementById("mytable").innerHTML = trHTML;
@@ -127,7 +127,7 @@ function userEdit(id) {
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.send(
             JSON.stringify({
-                // id: id,
+
                 RestaurantName: RestaurantName,
                 RestaurantType: RestaurantType,
                 ContactNo: ContactNo,
