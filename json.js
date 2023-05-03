@@ -44,7 +44,7 @@ function search() {
 
 function showUserCreateBox() {
     Swal.fire({
-        title: "Restaurant Details ",
+        title: "Add Restaurant Details ",
         html: '<input id="id" type="hidden">' +
             '<input id="RestaurantName" class="swal2-input" placeholder="RestaurantName">' +
             '<input id="RestaurantType" class="swal2-input" placeholder="RestaurantType">' +
