@@ -37,11 +37,11 @@
         },
         {
             "RestaurantName": "Shivaji ",
-            "RestaurantType": "Non-Veg",
-            "ContactNo": "9876543123",
+            "RestaurantType": "Non Veg",
             "Address": "Coimbatore",
+            "ContactNo": "9876512120",
             "EMailId": "Shivaji@gamil.com",
-            "avatar": "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
+            "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkIe4zEZsi3x1e0Ll0zZRXNoGeXpAhQjtKbOwbXjqrEg&s",
             "id": 5
         }
     ]
