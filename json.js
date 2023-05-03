@@ -1,6 +1,6 @@
-function loadTable() {
+function loadTable(RestaurantName = '') {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost:3000/Restaurant");
+    xhttp.open("GET", `http://localhost:3000/Restaurant?RestaurantName_like=${RestaurantName}`);
     xhttp.send();
 
     xhttp.onreadystatechange = function() {
@@ -36,6 +36,11 @@ function loadTable() {
 }
 
 loadTable();
+// searching
+function search() {
+    const RestaurantName = document.getElementById("searchvalue").value;
+    loadTable(RestaurantName);
+}
 
 function showUserCreateBox() {
     Swal.fire({
@@ -85,7 +90,8 @@ function userCreate() {
 function showUserEditBox(id) {
     console.log(id);
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `http://localhost:3000/Restaurant/${id}`);
+    xhttp.open("GET", `
+        http: //localhost:3000/Restaurant/${id}`);
     xhttp.send();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -107,7 +113,7 @@ function showUserEditBox(id) {
                     '<input id="EMailId" class="swal2-input" placeholder="EMailId" value="' +
                     objects["EMailId"] + '">',
                 showDenyButton: true,
-                showCancelButton: true,
+
                 confirmButtonText: 'Save',
                 denyButtonText: `Don't save`,
 
