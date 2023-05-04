@@ -19,7 +19,7 @@
         },
         {
             "RestaurantName": "BurgerKing",
-            "RestaurantType": "Non-Veg",
+            "RestaurantType": "Non Veg",
             "Address": "Coimbatore",
             "ContactNo": "9876543120",
             "EMailId": "Burgerking@gmail.com",
@@ -28,7 +28,7 @@
         },
         {
             "RestaurantName": "PizzaHut",
-            "RestaurantType": "Non-Veg",
+            "RestaurantType": "Non Veg",
             "Address": "Coimbatore",
             "ContactNo": "9876512120",
             "EMailId": "Pizzahut@gmail.com",
