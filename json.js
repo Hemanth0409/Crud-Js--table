@@ -84,8 +84,6 @@ function userCreate() {
         );
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                const objects = JSON.parse(this.responseText);
-                Swal.fire(objects["message"]);
                 loadTable();
             }
         };
@@ -122,7 +120,7 @@ function showUserEditBox(id) {
                     xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             const objects = JSON.parse(this.responseText);
-                            Swal.fire(objects["message"]);
+
                             loadTable();
                         }
                     };
@@ -140,7 +138,7 @@ function userEdit(id) {
     const EMailId = document.getElementById("EMailId").value;
     const imageInput = document.getElementById("image");
     const filename = "assets/images/" + imageInput.files[0].name;
-    if (validate() == true) {
+    if (validate_edit() == true) {
         const xhttp = new XMLHttpRequest();
         xhttp.open("PUT", `http://localhost:3000/Restaurant/${id}`);
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -159,8 +157,6 @@ function userEdit(id) {
         );
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                const objects = JSON.parse(this.responseText);
-                Swal.fire(objects["message"]);
                 loadTable();
             }
         };
@@ -193,6 +189,11 @@ function userDelete(id) {
             );
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4) {
+                    swal.fire({
+                        title: "Deleted Successfully",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    })
                     loadTable();
                 }
             };
@@ -247,6 +248,62 @@ function validate() {
     if (ContactNo.match(numCheck) && EMailId.match(EMailIdCheck)) {
         Swal.fire({
             title: "Successfully Created",
+            icon: "success",
+            showConfirmButton: true
+
+
+        })
+        return true;
+    }
+}
+
+function validate_edit() {
+    const RestaurantName = document.getElementById("RestaurantName").value;
+    const RestaurantType = document.getElementById("RestaurantType").value;
+    const Address = document.getElementById("Address").value;
+    const ContactNo = document.getElementById("ContactNo").value;
+    const EMailId = document.getElementById("EMailId").value;
+    //regular expression
+    const numCheck = /^[0-9]{10}$/;
+    const EMailIdCheck = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+
+
+    if (RestaurantName == "" || RestaurantType == "" || Address == "" || ContactNo == "" || EMailId == "") {
+        Swal.fire({
+            title: "Fields should not be empty",
+            showConfirmButton: true,
+            icon: "error"
+        })
+        return false;
+    }
+
+    if (!ContactNo.match(numCheck)) {
+
+        Swal.fire({
+            title: "Invalid Input",
+            text: "Contact Number should contain 10 digits",
+            icon: "error",
+            showConfirmButton: true,
+
+        })
+        return false;
+
+    }
+    if (!EMailId.match(EMailIdCheck)) {
+
+        Swal.fire({
+            title: "Invalid Input",
+            text: "Enter a valid email",
+            icon: "error",
+            showConfirmButton: true,
+
+        })
+        return false;
+
+    }
+    if (ContactNo.match(numCheck) && EMailId.match(EMailIdCheck)) {
+        Swal.fire({
+            title: "Successfully Edited",
             icon: "success",
             showConfirmButton: true
 
