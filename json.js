@@ -100,7 +100,7 @@ function showUserEditBox(id) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const objects = JSON.parse(this.responseText);
-            //const user = objects["objects"];
+
             console.log(objects);
             Swal.fire({
                 title: "Edit Restaurant-List",
@@ -108,7 +108,7 @@ function showUserEditBox(id) {
                     objects[`${id}`] + '">' +
                     '<input id="RestaurantName" class="swal2-input" placeholder="First" value="' +
                     objects["RestaurantName"] + '">' +
-                    '<select name="country" id="RestaurantType"class="swal2-input" style="width:270px"><option value="Veg">Veg</option><option value="Non-Veg">Non Veg</option><option value="Veg/Non Veg">Veg/Non Veg</option> value="' +
+                    '<select name="country" id="RestaurantType"class="swal2-input" style="width:270px"><option value="" selected disabled>-- select --</option><option value="Veg">Veg</option><option value="Non-Veg">Non Veg</option><option value="Veg/Non Veg">Veg/Non Veg</option> value=" ' +
                     objects["RestaurantType"] + '">' +
                     '<input id="Address" class="swal2-input" placeholder="Address" value="' +
                     objects["Address"] + '">' +
@@ -116,10 +116,16 @@ function showUserEditBox(id) {
                     objects["ContactNo"] + '">' +
                     '<input id="EMailId" class="swal2-input" placeholder="EMailId" value="' +
                     objects["EMailId"] + '">' +
-                    '<input style="margin-left:50px;margin-top:20px" id="image" type="file" class="swal2-input">' +
-                    objects["image"] + '">',
+                    '<input style="margin-left:50px;margin-top:20px" id="image" type="file" class="swal2-input" value="' + objects[`image`] + '">',
                 preConfirm: () => {
                     userEdit(id);
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            const objects = JSON.parse(this.responseText);
+                            Swal.fire(objects["message"]);
+                            loadTable();
+                        }
+                    };
                 },
             });
         }
@@ -127,7 +133,6 @@ function showUserEditBox(id) {
 }
 
 function userEdit(id) {
-    //const id = document.getElementById("id").value;
     const RestaurantName = document.getElementById("RestaurantName").value;
     const RestaurantType = document.getElementById("RestaurantType").value;
     const Address = document.getElementById("Address").value;
