@@ -48,10 +48,10 @@ function showUserCreateBox() {
         html: '<input id="id" type="hidden">' +
             '<input id="RestaurantName" class="swal2-input" placeholder="RestaurantName">' +
             '<select name="country" id="RestaurantType"class="swal2-input" style="width:270px"><option value="" selected disabled>-- select --</option><option value="Veg">Veg</option><option value="Non-Veg">Non Veg</option><option value="Veg/Non-veg">Veg/Non Veg</option></select>' +
-            '<input id="Address" class="swal2-input" placeholder="Address">' +
+            '<input id="Address" class="swal2-input" placeholder="Location">' +
             '<input id="ContactNo" class="swal2-input" placeholder="ContactNo">' +
             '<input id="EMailId" class="swal2-input" placeholder="EMailId">' +
-            '<input style="margin-left:50px;margin-top:20px" id="image" type="file" class="swal2-input">',
+            '<input  id="image" type="file" class="swal2-input ">',
         preConfirm: () => {
             userCreate();
         },
