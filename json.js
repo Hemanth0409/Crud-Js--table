@@ -51,7 +51,7 @@ function showUserCreateBox() {
             '<input id="Address" class="swal2-input" placeholder="Location">' +
             '<input id="ContactNo" class="swal2-input" placeholder="ContactNo">' +
             '<input id="EMailId" class="swal2-input" placeholder="EMailId">' +
-            '<input  id="image" type="file" class="swal2-input ">',
+            '<input  id="image" type="file" class="swal2-input">',
         preConfirm: () => {
             userCreate();
         },
