@@ -47,7 +47,7 @@ function showUserCreateBox() {
         title: "Add Restaurant Details ",
         html: '<input id="id" type="hidden">' +
             '<input id="RestaurantName" class="swal2-input" placeholder="RestaurantName">' +
-            '<input id="RestaurantType" class="swal2-input" placeholder="RestaurantType">' +
+            '<select name="country" id="RestaurantType"class="swal2-input" style="width:270px"><option value="Veg">Veg</option><option value="Non-Veg">Non Veg</option><option value="Veg/Non-veg">Veg/Non Veg</option></select>' +
             '<input id="Address" class="swal2-input" placeholder="Address">' +
             '<input id="ContactNo" class="swal2-input" placeholder="ContactNo">' +
             '<input id="EMailId" class="swal2-input" placeholder="EMailId">',
@@ -103,7 +103,7 @@ function showUserEditBox(id) {
                     objects[`${id}`] + '">' +
                     '<input id="RestaurantName" class="swal2-input" placeholder="First" value="' +
                     objects["RestaurantName"] + '">' +
-                    '<input id="RestaurantType" class="swal2-input" placeholder="Last" value="' +
+                    '<select name="country" id="RestaurantType"class="swal2-input" style="width:270px"><option value="Veg">Veg</option><option value="Non-Veg">Non Veg</option><option value="Veg/Non Veg">Veg/Non Veg</option> value="' +
                     objects["RestaurantType"] + '">' +
                     '<input id="Address" class="swal2-input" placeholder="Address" value="' +
                     objects["Address"] + '">' +
@@ -138,7 +138,7 @@ function userEdit(id) {
                 ContactNo: ContactNo,
                 Address: Address,
                 EMailId: EMailId,
-                Image: "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
+                Image: Image,
             })
 
         );
