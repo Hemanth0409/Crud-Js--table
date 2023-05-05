@@ -50,7 +50,8 @@ function showUserCreateBox() {
             '<select name="country" id="RestaurantType"class="swal2-input" style="width:270px"><option value="" selected disabled>-- select --</option><option value="Veg">Veg</option><option value="Non-Veg">Non Veg</option><option value="Veg/Non-veg">Veg/Non Veg</option></select>' +
             '<input id="Address" class="swal2-input" placeholder="Address">' +
             '<input id="ContactNo" class="swal2-input" placeholder="ContactNo">' +
-            '<input id="EMailId" class="swal2-input" placeholder="EMailId">',
+            '<input id="EMailId" class="swal2-input" placeholder="EMailId">' +
+            '<input style="margin-left:50px;margin-top:20px" id="image" type="file" class="swal2-input">',
         preConfirm: () => {
             userCreate();
         },
@@ -63,6 +64,9 @@ function userCreate() {
     const Address = document.getElementById("Address").value;
     const ContactNo = document.getElementById("ContactNo").value;
     const EMailId = document.getElementById("EMailId").value;
+    const imageInput = document.getElementById("image");
+    const filename = "assets/images/" + imageInput.files[0].name;
+
     if (validate() == true) {
         const xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://localhost:3000/Restaurant/");
@@ -74,7 +78,7 @@ function userCreate() {
                 Address: Address,
                 ContactNo: ContactNo,
                 EMailId: EMailId,
-                Image: "assets\\images.png",
+                Image: filename,
 
             })
         );
@@ -111,7 +115,9 @@ function showUserEditBox(id) {
                     '<input id="ContactNo" class="swal2-input" placeholder="Contacto" value="' +
                     objects["ContactNo"] + '">' +
                     '<input id="EMailId" class="swal2-input" placeholder="EMailId" value="' +
-                    objects["EMailId"] + '">',
+                    objects["EMailId"] + '">' +
+                    '<input style="margin-left:50px;margin-top:20px" id="image" type="file" class="swal2-input">' +
+                    objects["image"] + '">',
                 preConfirm: () => {
                     userEdit(id);
                 },
@@ -127,6 +133,8 @@ function userEdit(id) {
     const Address = document.getElementById("Address").value;
     const ContactNo = document.getElementById("ContactNo").value;
     const EMailId = document.getElementById("EMailId").value;
+    const imageInput = document.getElementById("image");
+    const filename = "assets/images/" + imageInput.files[0].name;
     if (validate() == true) {
         const xhttp = new XMLHttpRequest();
         xhttp.open("PUT", `http://localhost:3000/Restaurant/${id}`);
@@ -139,7 +147,7 @@ function userEdit(id) {
                 ContactNo: ContactNo,
                 Address: Address,
                 EMailId: EMailId,
-                Image: "assets\\images.png",
+                Image: filename,
 
             })
 
@@ -194,7 +202,6 @@ function validate() {
     const ContactNo = document.getElementById("ContactNo").value;
     const EMailId = document.getElementById("EMailId").value;
     //regular expression
-    const nameCheck = /^[a-zA-Z\s]{2,20}$/;
     const numCheck = /^[0-9]{10}$/;
     const EMailIdCheck = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
 
@@ -207,20 +214,6 @@ function validate() {
         })
         return false;
     }
-
-    if (!RestaurantName.match(nameCheck)) {
-
-        Swal.fire({
-            title: "Invalid Input",
-            text: "Restaurant Name can either be letter or number",
-            icon: "error",
-            showConfirmButton: true,
-
-        })
-        return false;
-
-    }
-
 
     if (!ContactNo.match(numCheck)) {
 
@@ -246,7 +239,7 @@ function validate() {
         return false;
 
     }
-    if (RestaurantName.match(nameCheck) && ContactNo.match(numCheck) && EMailId.match(EMailIdCheck)) {
+    if (ContactNo.match(numCheck) && EMailId.match(EMailIdCheck)) {
         Swal.fire({
             title: "Successfully Created",
             icon: "success",

@@ -2,48 +2,57 @@
   "Restaurant": [
     {
       "RestaurantName": "Hifi",
-      "RestaurantType": "Non Veg",
+      "RestaurantType": "Non-Veg",
       "ContactNo": "9876565432",
       "Address": "coimbatore",
       "EMailId": "Hifi@gmail.com",
-      "Image": "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
+      "Image": "assets/images/foodCircle.png",
       "id": 1
     },
     {
       "RestaurantName": "KFC",
-      "RestaurantType": "Non Veg",
+      "RestaurantType": "Non-Veg",
       "ContactNo": "9876543220",
       "Address": "Coimbatore",
       "EMailId": "KFC@gmail.com",
-      "Image": "http://vignette1.wikia.nocookie.net/ridiculoushist/images/b/b8/KFC_logo.png",
+      "Image": "assets/images/KFC.webp",
       "id": 2
     },
     {
       "RestaurantName": "BurgerKing",
-      "RestaurantType": "Non Veg",
-      "Address": "Coimbatore",
+      "RestaurantType": "Non-Veg",
       "ContactNo": "9876543120",
+      "Address": "Coimbatore",
       "EMailId": "Burgerking@gmail.com",
-      "Image": "https://upload.wikimedia.org/wikipedia/commons/8/85/Burger_King_logo_%281999%29.svg",
+      "Image": "assets/images/Burger_King.svg",
       "id": 3
     },
     {
       "RestaurantName": "PizzaHut",
-      "RestaurantType": "Non Veg",
-      "Address": "Coimbatore",
+      "RestaurantType": "Non-Veg",
       "ContactNo": "9876512120",
+      "Address": "Coimbatore",
       "EMailId": "Pizzahut@gmail.com",
-      "Image": "http://image.shutterstock.com/z/stock-vector-food-restaurant-logo-icon-264413183.jpg",
+      "Image": "assets/images/pizzahut.png",
       "id": 4
     },
     {
       "RestaurantName": "Shivaji ",
-      "RestaurantType": "Non Veg",
-      "Address": "Coimbatore",
+      "RestaurantType": "Non-Veg",
       "ContactNo": "9876512120",
+      "Address": "Coimbatore",
       "EMailId": "Shivaji@gamil.com",
-      "Image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkIe4zEZsi3x1e0Ll0zZRXNoGeXpAhQjtKbOwbXjqrEg&s",
+      "Image": "assets/images/dr.biriyani.jpg",
       "id": 5
+    },
+    {
+      "RestaurantName": "Annapoorna",
+      "RestaurantType": "Veg",
+      "ContactNo": "9876543120",
+      "Address": "Coimbatore",
+      "EMailId": "Annapoorna@gmail.com",
+      "Image": "assets/images/annapoorna.png",
+      "id": 6
     }
   ]
 }
