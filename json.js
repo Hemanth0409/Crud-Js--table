@@ -47,7 +47,7 @@ function showUserCreateBox() {
         title: "Add Restaurant Details ",
         html: '<input id="id" type="hidden">' +
             '<input id="RestaurantName" class="swal2-input" placeholder="RestaurantName">' +
-            '<select name="country" id="RestaurantType"class="swal2-input" style="width:270px"><option value="Veg">Veg</option><option value="Non-Veg">Non Veg</option><option value="Veg/Non-veg">Veg/Non Veg</option></select>' +
+            '<select name="country" id="RestaurantType"class="swal2-input" style="width:270px"><option value="" selected disabled>-- select --</option><option value="Veg">Veg</option><option value="Non-Veg">Non Veg</option><option value="Veg/Non-veg">Veg/Non Veg</option></select>' +
             '<input id="Address" class="swal2-input" placeholder="Address">' +
             '<input id="ContactNo" class="swal2-input" placeholder="ContactNo">' +
             '<input id="EMailId" class="swal2-input" placeholder="EMailId">',
@@ -74,7 +74,8 @@ function userCreate() {
                 Address: Address,
                 ContactNo: ContactNo,
                 EMailId: EMailId,
-                Image: "http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png",
+                Image: "assets\\images.png",
+
             })
         );
         xhttp.onreadystatechange = function() {
@@ -138,7 +139,8 @@ function userEdit(id) {
                 ContactNo: ContactNo,
                 Address: Address,
                 EMailId: EMailId,
-                Image: Image,
+                Image: "assets\\images.png",
+
             })
 
         );
