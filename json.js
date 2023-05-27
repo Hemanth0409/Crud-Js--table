@@ -15,17 +15,21 @@ function loadTable(RestaurantName = '') {
                 trHTML += "<td>" + object["RestaurantType"] + "</td>";
                 trHTML += "<td>" + object["Address"] + "</td>";
                 trHTML += "<td>" + object["ContactNo"] + "</td>";
-                trHTML += "<td>" + object["EMailId"] + "</td>";
+                trHTML += "<td>" + object["EMailId"] + "</td>"
                 trHTML +=
                     '<td><img width="50px" src="' +
                     object["Image"] +
                     '" class="Image"></td>';
                 trHTML +=
-                    '<td><button type="button" class="btn btn-secondary ms-2" onclick="showUserEditBox(' +
+                    '<td><button type="button" class="btn btn-secondary ms-1" onclick="showLogInBox(' +
+                    object["id"] +
+                    ')"><i class="fa-sharp fa-solid fa-compass"></button>';
+                trHTML +=
+                    '<td><button type="button" class="btn btn-secondary ms-1" onclick="showUserEditBox(' +
                     object["id"] +
                     ')"><i class="fa-sharp fa-solid fa-user-pen"></i></button>';
                 trHTML +=
-                    '<button type="button" class="btn  btn-danger ms-2" onclick="userDelete(' +
+                    '<button type="button" class="btn  btn-danger ms-1" onclick="userDelete(' +
                     object["id"] +
                     ')"><i class="fa-sharp fa-solid fa-trash"></i></button></td>';
                 trHTML += "</tr>";
@@ -42,6 +46,48 @@ function search() {
     loadTable(RestaurantName);
 }
 
+function showLogInBox(id) {
+    Swal.fire({
+        title: "Log In Page",
+        html: '<input id="id" type="hidden">' +
+            '<input id="Usermail" class="swal2-input" placeholder="User_Mail">' +
+            '<input id="Password" type="password" class="swal2-input" placeholder="Password">',
+        preConfirm: () => {
+            LoginBox();
+        },
+    });
+}
+
+function LoginBox() {
+    const username = document.getElementById("Usermail").value;
+    const password = document.getElementById("Password").value;
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `http://localhost:3000/Restaurant`);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            login = false;
+            const objects = JSON.parse(this.responseText);
+            console.log(objects);
+            // Check if objects is an array
+            for (let object of objects) {
+                if (username == object.EMailId && password == object.RestaurantName) {
+                    login = true;
+                    console.log("hello");
+                    window.location.href = "./ourfeast.html";
+                }
+            }
+            if (!login) {
+                alert("Login failed")
+            }
+
+        }
+
+    }
+}
+
 function showUserCreateBox() {
     Swal.fire({
         title: "Add Restaurant Details ",
@@ -51,7 +97,7 @@ function showUserCreateBox() {
             '<input id="Address" class="swal2-input" placeholder="Location">' +
             '<input id="ContactNo" class="swal2-input" placeholder="ContactNo">' +
             '<input id="EMailId" class="swal2-input" placeholder="EMailId">' +
-            '<input  id="image" type="file" class="swal2-input">',
+            '<input  id="image" type="file" class="swal2-input ">',
         preConfirm: () => {
             userCreate();
         },
@@ -119,13 +165,12 @@ function showUserEditBox(id) {
                     userEdit(id);
                     xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
-                            const objects = JSON.parse(this.responseText);
 
-                            loadTable();
                         }
                     };
                 },
             });
+
         }
     };
 }
@@ -173,6 +218,7 @@ function userDelete(id) {
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         type: 'warning',
+        icon: 'warning',
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,
