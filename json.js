@@ -46,7 +46,7 @@ function search() {
     loadTable(RestaurantName);
 }
 
-function showLogInBox(id) {
+function showLogInBox() {
     Swal.fire({
         title: "Log In Page",
         html: '<input id="id" type="hidden">' +

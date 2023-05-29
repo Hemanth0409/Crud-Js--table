@@ -64,7 +64,10 @@
       "id": 7
     }
   ],
-  "admin": [
-    {}
+  "Admin": [
+    {
+      "admin_email": "admin123@gmail.com",
+      "admin_password": "Admin123$"
+    }
   ]
 }
