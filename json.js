@@ -122,7 +122,11 @@ function LoginBox() {
                 }
             }
             if (!login) {
-                alert("Login failed")
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Unauthorized Access!',
+                })
             }
 
         }
@@ -132,6 +136,7 @@ function LoginBox() {
 
 function showUserCreateBox() {
     Swal.fire({
+
         title: "Add Restaurant Details ",
         html: '<input id="id" type="hidden">' +
             '<input id="RestaurantName" class="swal2-input" placeholder="RestaurantName">' +
@@ -140,6 +145,7 @@ function showUserCreateBox() {
             '<input id="ContactNo" class="swal2-input" placeholder="ContactNo">' +
             '<input id="EMailId" class="swal2-input" placeholder="EMailId">' +
             '<input  id="image" type="file" class="swal2-input ">',
+
         preConfirm: () => {
             userCreate();
         },

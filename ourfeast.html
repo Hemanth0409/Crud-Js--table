@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="json.js"></script>
+    <script src="json.js/"></script>
 
 
 </head>
@@ -23,6 +23,11 @@
         <nav class="navbar navbar-expand-lg bg-dark navbar-light">
             <div class="container">
                 <a class="navbar-brand text-white" href="#"><img src="assets/images/our feast.jpg" alt="Logo" draggable="false" height="50" class="me-3">Our Feast Hub</a>
+            </div>
+
+            <div class="col-2 me-5 p-3">
+                <a herf="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <input id="searchvalue1" type="search" class="ps-3 pe-2 border-2 border-dark rounded-pill" placeholder="Search by Food_name" onkeyup="searchFood()">
             </div>
             <div class="p-2 bd-highlight">
                 <button type="button" class="btn btn-secondary" onclick="showLogout()">Logout</button>
@@ -48,18 +53,101 @@
 
     <section class="container mt-5">
         <h2>Order Cravings</h2>
-        <div class="bd-highlight float-end">
-            <button type="button" class="btn bg-dark text-light fw-bolder fs-6 mt-3 me-3" onclick="showUserCreateBox()">
-              ADD FOOD
-            </button>
-        </div>
-        <div class="container  mt-5 mb-5">
-            <div class="row" id="card_details_1">
+        <div class="container">
 
+            <div class="row mb-3">
+                <div class="col-md-6"> </div>
+                <div class="col-md-6 text-end">
+                    <button type="button" class="btn btn-secondary" onclick="showUserCreateBox()">Add Food</button>
+                </div>
             </div>
+            <div id="mycards" class="row"></div>
+
         </div>
 
+        <script>
+            function loadcard_food() {
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("GET", `http://localhost:3000/Food`);
+                xhttp.send();
 
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(this.responseText);
+                        var trHTML = "";
+                        const objects = JSON.parse(this.responseText);
+                        for (let object of objects) {
+                            trHTML += '<div class="card text-dark col-3 mt-5">';
+                            trHTML += '<img src="' + object["Image"] + '">';
+
+                            trHTML += '<p class="card-subtitle ">' + object["Food_name"] + "</p>";
+                            trHTML +=
+                                '<a href="#" class="card-text link-dark text-decoration-none">' +
+                                "Price: " +
+                                object["Price"] +
+                                "</a>";
+                            trHTML +=
+                                '<button type="button" class="btn btn-outline-secondary" onclick="showUserEditBox(' +
+                                object["id"] +
+                                ')"><i class="fa-solid fa-pen-to-square text-dark " style="color: #ffffff;"></i></button>';
+                            trHTML +=
+                                '<button type="button" class="btn btn-outline-danger" onclick="userDelete(' +
+                                object["id"] +
+                                ')"><i class="fa-regular fa-trash-can text-dark style="color: #ffffff;"></i></button>';
+                            trHTML += "</div>";
+                        }
+                        document.getElementById("mycards").innerHTML = trHTML;
+                    }
+                };
+            }
+
+            loadcard_food();
+            // searching
+            function searchFood() {
+                const Foodname = document.getElementById("searchvalue1").value;
+                loadcard_food(Foodname);
+            }
+
+            function showUserCreateBox() {
+                Swal.fire({
+                    title: "Add New Food",
+                    showCloseButton: true,
+                    html: '<input id="id" type="hidden">' +
+                        '<input id="Food_name" class="swal2-input" placeholder="Food_name">' +
+                        '<input id="Price" class="swal2-input" placeholder="Price">' +
+                        '<input id="Image" class="form-control swal2-input mt-4" type="file">',
+                    preConfirm: () => {
+                        userCreate();
+                    },
+                });
+            }
+
+            function userCreate() {
+                const pname = document.getElementById("Food_name").value;
+                const price = document.getElementById("Price").value;
+                const image = document.getElementById("Image");
+                const file = "assets/images/" + image.files[0].name;
+
+
+
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "http://localhost:3000/Food/");
+                xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhttp.send(
+                    JSON.stringify({
+                        // >>json string
+                        Food_name: pname,
+                        Price: price,
+                        Image: file,
+                    })
+                );
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        loadcard_food();
+                    }
+                };
+            }
+        </script>
 </body>
 
 </html>
