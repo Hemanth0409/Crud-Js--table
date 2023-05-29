@@ -1,74 +1,99 @@
 {
-    "Restaurant": [{
-            "RestaurantName": "Hifi",
-            "RestaurantType": "Veg/Non Veg",
-            "ContactNo": "9876565432",
-            "Address": "coimbatore",
-            "EMailId": "Hifi@gmail.com",
-            "Image": "assets/images/foodCircle.png",
-            "id": 1
-        },
-        {
-            "RestaurantName": "KFC",
-            "RestaurantType": "Non-Veg",
-            "ContactNo": "9876543220",
-            "Address": "Coimbatore",
-            "EMailId": "KFC@gmail.com",
-            "Image": "assets/images/KFC.webp",
-            "id": 2
-        },
-        {
-            "RestaurantName": "BurgerKing",
-            "RestaurantType": "Non-Veg",
-            "ContactNo": "9876543120",
-            "Address": "Coimbatore",
-            "EMailId": "Burgerking@gmail.com",
-            "Image": "assets/images/Burger_King.svg",
-            "id": 3
-        },
-        {
-            "RestaurantName": "PizzaHut",
-            "RestaurantType": "Non-Veg",
-            "ContactNo": "9876512120",
-            "Address": "Coimbatore",
-            "EMailId": "Pizzahut@gmail.com",
-            "Image": "assets/images/pizzahut.png",
-            "id": 4
-        },
-        {
-            "RestaurantName": "Shivaji ",
-            "RestaurantType": "Non-Veg",
-            "ContactNo": "9876512120",
-            "Address": "Coimbatore",
-            "EMailId": "Shivaji@gamil.com",
-            "Image": "assets/images/dr.biriyani.jpg",
-            "id": 5
-        },
-        {
-            "RestaurantName": "Annapoorna",
-            "RestaurantType": "Veg",
-            "ContactNo": "9876543120",
-            "Address": "Coimbatore",
-            "EMailId": "Annapoorna@gmail.com",
-            "Image": "assets/images/annapoorna.png",
-            "id": 6
-        },
-        {
-            "RestaurantName": "Our Feast Hub",
-            "RestaurantType": "Veg/Non Veg",
-            "ContactNo": "9876543120",
-            "Address": "Coimbatore",
-            "EMailId": "Ourfeasthub@gmail.com",
-            "Image": "assets/images/our feast.jpg",
-            "id": 7
-        }
-    ],
-    "Admin": [{
-        "admin_email": "admin123@gmail.com",
-        "admin_password": "Admin123$"
-    }],
-    "Food": [{
-
-    }]
-
+  "Restaurant": [
+    {
+      "RestaurantName": "Hifi",
+      "RestaurantType": "Veg/Non Veg",
+      "ContactNo": "9876565432",
+      "Address": "coimbatore",
+      "EMailId": "Hifi@gmail.com",
+      "Image": "assets/images/foodCircle.png",
+      "id": 1
+    },
+    {
+      "RestaurantName": "KFC",
+      "RestaurantType": "Non-Veg",
+      "ContactNo": "9876543220",
+      "Address": "Coimbatore",
+      "EMailId": "KFC@gmail.com",
+      "Image": "assets/images/KFC.webp",
+      "id": 2
+    },
+    {
+      "RestaurantName": "BurgerKing",
+      "RestaurantType": "Non-Veg",
+      "ContactNo": "9876543120",
+      "Address": "Coimbatore",
+      "EMailId": "Burgerking@gmail.com",
+      "Image": "assets/images/Burger_King.svg",
+      "id": 3
+    },
+    {
+      "RestaurantName": "PizzaHut",
+      "RestaurantType": "Non-Veg",
+      "ContactNo": "9876512120",
+      "Address": "Coimbatore",
+      "EMailId": "Pizzahut@gmail.com",
+      "Image": "assets/images/pizzahut.png",
+      "id": 4
+    },
+    {
+      "RestaurantName": "Shivaji ",
+      "RestaurantType": "Non-Veg",
+      "ContactNo": "9876512120",
+      "Address": "Coimbatore",
+      "EMailId": "Shivaji@gamil.com",
+      "Image": "assets/images/dr.biriyani.jpg",
+      "id": 5
+    },
+    {
+      "RestaurantName": "Annapoorna",
+      "RestaurantType": "Veg",
+      "ContactNo": "9876543120",
+      "Address": "Coimbatore",
+      "EMailId": "Annapoorna@gmail.com",
+      "Image": "assets/images/annapoorna.png",
+      "id": 6
+    },
+    {
+      "RestaurantName": "Our Feast Hub",
+      "RestaurantType": "Veg/Non Veg",
+      "ContactNo": "9876543120",
+      "Address": "Coimbatore",
+      "EMailId": "Ourfeasthub@gmail.com",
+      "Image": "assets/images/our feast.jpg",
+      "id": 7
+    }
+  ],
+  "Admin": [
+    {
+      "admin_email": "admin123@gmail.com",
+      "admin_password": "Admin123$"
+    }
+  ],
+  "Food": [
+    {
+      "Image": "assets/images/pizza.avif",
+      "Food_name": "Pizza",
+      "Price": "800",
+      "id": 1
+    },
+    {
+      "Image": "assets/images/biriyani.avif",
+      "Food_name": "Biriyani",
+      "Price": "150",
+      "id": 2
+    },
+    {
+      "Image": "assets/images/Chicken Tandoori.webp",
+      "Food_name": "Chicken Tandoori",
+      "Price": "400",
+      "id": 3
+    },
+    {
+      "Image": "assets/images/choco truffle.avif",
+      "Food_name": "Choco truffle",
+      "Price": "650",
+      "id": 4
+    }
+  ]
 }
