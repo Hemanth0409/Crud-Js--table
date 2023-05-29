@@ -1,3 +1,40 @@
+admin_login = () => {
+    const admin_email = document.getElementById("adminemail").value;
+    const admin_password = document.getElementById("adminpassword").value;
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `http://localhost:3000/Admin`);
+    xhttp.send();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            const objects = JSON.parse(this.responseText);
+            var show_user = "";
+            for (let object of objects) {
+                console.log(admin_email);
+                if (
+                    object["admin_email"] == admin_email &&
+                    object["admin_password"] == admin_password
+                ) {
+                    console.log(admin_email);
+                    window.location.href = "http://127.0.0.1:5502/index.html";
+                    show_user +=
+                        `<p>${object["admin_email"]}</p>` +
+                        `<a class="btn btn-primary ms-2 buttonhide"  type="button"
+                            id="signupbutton">Logout</a>`;
+                    $("#signupbutton").html(show_user);
+                    break;
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Unauthorized Access!',
+                    });
+                }
+            }
+        }
+    };
+};
+
 function loadTable(RestaurantName = '') {
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", `http://localhost:3000/Restaurant?RestaurantName_like=${RestaurantName}`);
@@ -46,9 +83,14 @@ function search() {
     loadTable(RestaurantName);
 }
 
+function showLogout() {
+    window.location.href = '/login.html';
+}
+
 function showLogInBox() {
     Swal.fire({
         title: "Log In Page",
+        showCloseButton: true,
         html: '<input id="id" type="hidden">' +
             '<input id="Usermail" class="swal2-input" placeholder="User_Mail">' +
             '<input id="Password" type="password" class="swal2-input" placeholder="Password">',
