@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script src="https://kit.fontawesome.com/d509f79d02.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -19,9 +22,9 @@
 <body>
     <div class="row">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-dark navbar-light navbar-fixed-top bg-transparent">
-            <div class="container">
-                <a class="navbar-brand text-white bg-transparent" href="#">Our Feast Hub</a>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-light navbar-fixed-top bg-secondary">
+            <div class="container ms-5">
+                <a class="navbar-brand text-white" href="#"><img src="assets/images/our feast.jpg" alt="logo" class="ms-3 me-3" width="50px">Our Feast Hub</a>
             </div>
 
             <div class="col-3 me-5 p-3">
@@ -29,7 +32,7 @@
                 <input id="searchvalue1" type="search" class="ps-3 pe-2 border-2 border-dark rounded-pill" placeholder="Search by Food_name" onkeyup="searchFood()">
             </div>
             <div class="p-2 bd-highlight">
-                <button type="button" class="btn btn-secondary" onclick="showLogout()">Logout</button>
+                <button type="button" class="btn btn-secondary me-5" onclick="showLogout()">Logout</button>
             </div>
         </nav>
         <!-- Navbar -->
@@ -66,6 +69,212 @@
             <div id="mycards" class="row bg-transparent"></div>
         </div>
     </section>
+    <script>
+        //Food-list
+        function loadcard_food(Food_name = "") {
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET", `http://localhost:3000/Food?Food_name_like=${Food_name}`);
+            xhttp.send();
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    var cardHTML = "";
+                    const objects = JSON.parse(this.responseText);
+                    for (let object of objects) {
+                        cardHTML += '<div class="card text-white bg-dark col-3 mt-5">';
+                        cardHTML += '<img src="' + object["Image"] + '"id="img" height="200vh"">';
+                        cardHTML += '<p class="card-subtitle ">' + object["Food_name"] + "</p>";
+                        cardHTML += '<a href="#" class="card-text text-white link-dark text-decoration-none">' +
+                            "Price: " +
+                            object["Price"] +
+                            "</a>";
+                        cardHTML += '<button type="button" class="btn btn-secondary ms-1" onclick="showUserEdit_foodBox(' +
+                            object["id"] +
+                            ')"><i class="fa-sharp fa-solid fa-user-pen"></i></button>';
+                        cardHTML += '<button type="button" class="btn  btn-danger ms-1" onclick="userDelete_food(' +
+                            object["id"] +
+                            ')"><i class="fa-sharp fa-solid fa-trash"></i></button>';
+                        cardHTML += "</div>";
+                    }
+                    document.getElementById("mycards").innerHTML = cardHTML;
+
+                }
+            };
+        }
+
+        loadcard_food();
+
+        // searching
+        function searchFood() {
+            const Foodname = document.getElementById("searchvalue1").value;
+            loadcard_food(Foodname);
+        }
+        //jquery for search 
+        $(document).ready(function() {
+            // Get the search bar element
+            var searchBar = $("#searchvalue1");
+
+            // Get the content to hide
+            var contentToHide = $("#content");
+
+            // When the user clicks on the search bar, hide the content
+            searchBar.on("click", function() {
+                contentToHide.hide();
+            });
+
+            // When the user clicks anywhere outside the search bar, show the content
+            $(document).on("click", function(event) {
+                if (!searchBar.is(event.target)) {
+                    contentToHide.show();
+                }
+            });
+        });
+
+
+        function showUserCreateBox_Card() {
+            Swal.fire({
+                title: "Add New Food",
+                showCloseButton: true,
+                closeOnClickOutside: false,
+                html: '<input id="id" type="hidden">' +
+                    '<input id="Food_name" class="swal2-input" placeholder="Food_name">' +
+                    '<input id="Price" class="swal2-input" placeholder="Price">' +
+                    '<input id="Image" class="form-control swa4l1-input mt-4" type="file">',
+                preConfirm: () => {
+                    userCreate_card();
+                },
+            });
+        }
+
+        function userCreate_card() {
+
+            const Food_name = document.getElementById("Food_name").value;
+            const Price = document.getElementById("Price").value;
+            const Image = document.getElementById("Image");
+            const file = "assets/images/" + Image.files[0].name;
+            console.log("file")
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST", "http://localhost:3000/Food");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            console.log(Food_name)
+            xhttp.send(
+                JSON.stringify({
+                    Image: file,
+                    Food_name: Food_name,
+                    Price: Price,
+                })
+            );
+            console.log(xhttp)
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    loadcard_food();
+                }
+            };
+        }
+
+        function showUserEdit_foodBox(id) {
+            console.log(id);
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET", `http://localhost:3000/Food/${id}`);
+            xhttp.send();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const objects = JSON.parse(this.responseText);
+
+                    console.log(objects);
+                    Swal.fire({
+                        title: "Edit Food-Details",
+                        showCloseButton: true,
+                        closeOnClickOutside: false,
+                        html: '<input id="id" type="hidden" value="' +
+                            objects[`${id}`] + '">' +
+                            '<input id="Food_name" class="swal2-input" placeholder="Food_name" value="' +
+                            objects["Food_name"] + '">' +
+                            '<input id="Price" class="swal2-input" placeholder="Price" value="' +
+                            objects["Price"] + '">' +
+                            '<input style="margin-left:25px;margin-top:20px" id="Image" type="file" class="form-control swa4l1-input mt-4" value="' + objects[`Image`] + '">',
+                        preConfirm: () => {
+                            UserEdit_food(id);
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+
+                                }
+                            };
+                        },
+                    });
+
+                }
+            };
+        }
+
+        function UserEdit_food(id) {
+            const Food_name = document.getElementById("Food_name").value;
+            const Price = document.getElementById("Price").value;
+            const Image = document.getElementById("Image");
+            const file = "assets/images/" + Image.files[0].name;
+
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("PUT", `http://localhost:3000/Food/${id}`);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(
+                JSON.stringify({
+
+                    Image: file,
+                    Food_name: Food_name,
+                    Price: Price,
+
+                })
+
+            );
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    loadcard_food();
+                }
+            };
+        }
+
+
+
+        function userDelete_food(id) {
+            console.log(id);
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("DELETE", `http://localhost:3000/Food/${id}`);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                icon: 'warning',
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: '<i class="fa fa-thumbs-up"></i> Delete!',
+                confirmButtonAriaLabel: 'Thumbs up, Delete!',
+                cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
+                cancelButtonAriaLabel: 'Thumbs down'
+            }).then((result) => {
+                if (result.value) {
+                    xhttp.send(
+                        JSON.stringify({
+                            id: id,
+                        })
+                    );
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4) {
+                            swal.fire({
+                                title: "Deleted Successfully",
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            })
+                            loadcard_food();
+                        }
+                    };
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
