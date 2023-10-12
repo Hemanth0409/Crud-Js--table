@@ -58,10 +58,7 @@ function loadTable(RestaurantName = '') {
                     '<td><img width="50px" src="' +
                     object["Image"] +
                     '" class="Image"></td>';
-                trHTML +=
-                    '<td><button type="button" class="btn btn-secondary ms-1" onclick="showLogInBox(' +
-                    object["id"] +
-                    ')"><i class="fa-sharp fa-solid fa-compass"></button>';
+
                 trHTML +=
                     '<td><button type="button" class="btn btn-secondary ms-1" onclick="showUserEditBox(' +
                     object["id"] +
